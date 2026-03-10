@@ -1,2 +1,2 @@
-# Nabu-ArchLinux
+已作废
 提供timoxa0大佬25-11-04最新的仓库
