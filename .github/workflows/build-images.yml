@@ -73,8 +73,12 @@ jobs:
         shell: bash
         run: |
           sudo arch-chroot ./mountpoint bash - <<'EOF'
-          sed -i 's|Server = http://mirror.archlinuxarm.org/$arch/$repo|# Server = http://mirror.archlinuxarm.org/$arch/$repo|g' /etc/pacman.d/mirrorlist
-          sed -i 's|# Server = http://eu.mirror.archlinuxarm.org/$arch/$repo|Server = http://eu.mirror.archlinuxarm.org/$arch/$repo|g' /etc/pacman.d/mirrorlist
+          cat > /etc/pacman.d/mirrorlist << 'MIRROR'
+          ## Arch Linux ARM mirrorlist
+          Server = http://mirrors.kernel.org/archlinuxarm/$arch/$repo
+          Server = http://mirror.rackspace.com/archlinuxarm/$arch/$repo
+          Server = http://os.archlinuxarm.org/$arch/$repo
+          MIRROR
           EOF
 
       - name: Delete default user
